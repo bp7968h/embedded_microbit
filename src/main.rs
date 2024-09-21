@@ -1,14 +1,21 @@
+#![deny(unsafe_code)]
+//dont't use standard crate
 #![no_std]
+//don't use standard main interface
 #![no_main]
 
-use panic_rtt_target as _;
-use rtt_target::{rtt_init_print, rprintln};
-
 use cortex_m_rt::entry;
+use panic_halt as _;
+use microbit::board::Board;
+use microbit::hal::prelude::*;
+
 
 #[entry]
-fn main() -> ! {
-    rtt_init_print!();
-    rprintln!("Hello World");
+fn entry_point() -> ! {
+    let mut board = Board::take().unwrap();
+
+    board.display_pins.col1.set_low().unwrap();
+    board.display_pins.row1.set_high().unwrap();
+
     loop {}
 }
