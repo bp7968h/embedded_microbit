@@ -52,6 +52,7 @@ fn spiral_display(
     start_col: usize,
     end_col: usize,
 ) {
+    let delay = 200;
     if start_row > end_row || start_col > end_col {
         return;
     }
@@ -59,14 +60,14 @@ fn spiral_display(
     // Top row (left to right)
     for i in start_col..=end_col {
         leds[start_row][i] = 1;
-        display.show(timer, *leds, 30);
+        display.show(timer, *leds, delay);
         leds[start_row][i] = 0;
     }
 
     // Right column (top to bottom)
     for i in (start_row + 1)..=end_row {
         leds[i][end_col] = 1;
-        display.show(timer, *leds, 30);
+        display.show(timer, *leds, delay);
         leds[i][end_col] = 0;
     }
 
@@ -74,7 +75,7 @@ fn spiral_display(
     if start_row != end_row {
         for i in (start_col..end_col).rev() {
             leds[end_row][i] = 1;
-            display.show(timer, *leds, 30);
+            display.show(timer, *leds, delay);
             leds[end_row][i] = 0;
         }
     }
@@ -83,7 +84,7 @@ fn spiral_display(
     if start_col != end_col {
         for i in (start_row + 1..end_row).rev() {
             leds[i][start_col] = 1;
-            display.show(timer, *leds, 30);
+            display.show(timer, *leds, delay);
             leds[i][start_col] = 0;
         }
     }
