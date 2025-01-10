@@ -30,10 +30,17 @@ To get started with this project, ensure you have the following:
 3. **GDB and OpenOCD**: You may also need GDB and OpenOCD to debug and flash (load to microcontoller) your code.
 4. **microbit**: Of course, you'll need a microbit board.
 
-## How to Flash the Code
+## How to Flash the Code?
 Below command will build and flash your microbit with the current code for microbit v2:
 ```bash
     cargo embed --features v2 --target thumbv7em-none-eabihf
+```
+
+## How to interact with serial device using keyboard?
+We can use `minicom` to interact with the serial device using the keyboard. Below command tells `minicom` to open the serial device at `/dev/ttyACM0` and set its baud rate to 115200.
+```bash
+    # might need a config file at `~/.minirc.dfl` with respective configurations
+    minicom -D /dev/ttyACM0 -b 115200
 ```
 
 ## Learning Resources
