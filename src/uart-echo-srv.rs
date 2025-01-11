@@ -2,16 +2,16 @@
 #![no_main]
 
 use panic_rtt_target as _;
-use rtt_target::rtt_init_print;
+use rtt_target::{rtt_init_print, rprintln};
+use embedded_hal_nb::serial::{Read, Write};
 use cortex_m_rt::entry;
 use microbit::{
     hal::prelude::*,
     hal::uarte,
     hal::uarte::{Baudrate, Parity},
 };
-use embedded_hal_nb::serial::Write;
-mod serial_setup;
-use serial_setup::UartePort;
+
+use microbit_learn::serial_setup::UartePort;
 
 #[entry]
 fn main() -> ! {
@@ -28,11 +28,16 @@ fn main() -> ! {
         UartePort::new(serial)
     };
 
-    let data = "The quick brown fox jumps over the lazy dog.";
-    for c in data.chars() {
-        nb::block!(serial.write(c as u8)).unwrap();
-        nb::block!(serial.flush()).unwrap();
-    }
+    loop {
+        // Read data from pc
+        let byte_char: char = nb::block!(serial.read()).unwrap().into();
+        rprintln!("{}", byte_char);
 
-    loop {}
+        {
+            // send the same data back to pc
+            use core::fmt::Write;
+            write!(serial, "{}\r\n", byte_char).unwrap();
+            nb::block!(serial.flush()).unwrap();
+        }
+    }
 }

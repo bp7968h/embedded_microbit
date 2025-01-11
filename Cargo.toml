@@ -1,5 +1,5 @@
 [package]
-name = "microbit"
+name = "microbit-learn"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,6 +8,17 @@ codegen-units = 1
 debug = true
 lto = true
 
+[[bin]]
+name = "uart-send"
+path = "src/uart_mc_pc.rs"
+
+[[bin]]
+name = "uart-receive"
+path = "src/uart_pc_mc.rs"
+
+[[bin]]
+name = "echo-server"
+path = "src/uart-echo-srv.rs"
 
 [dependencies]
 cortex-m = "0.7.3"

@@ -180,7 +180,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "microbit"
+name = "microbit-common"
+version = "0.15.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "365317da45a52eb2cfe9c23130520b69bd81a27922ff78c964de875137e9fa7b"
+dependencies = [
+ "embedded-hal 1.0.0",
+ "nrf52833-hal",
+ "tiny-led-matrix",
+]
+
+[[package]]
+name = "microbit-learn"
 version = "0.1.0"
 dependencies = [
  "cortex-m",
@@ -191,17 +202,6 @@ dependencies = [
  "nb 1.1.0",
  "panic-rtt-target",
  "rtt-target",
-]
-
-[[package]]
-name = "microbit-common"
-version = "0.15.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "365317da45a52eb2cfe9c23130520b69bd81a27922ff78c964de875137e9fa7b"
-dependencies = [
- "embedded-hal 1.0.0",
- "nrf52833-hal",
- "tiny-led-matrix",
 ]
 
 [[package]]
