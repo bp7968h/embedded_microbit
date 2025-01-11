@@ -10,6 +10,15 @@ This repository contains different branches, each corresponding to a specific ch
 - **`main`**: The default branch contains the starting template or most recent examples.
 - **`led_roulette`**: This branch contains code that makes the LEDs on the micro:bit flash in a `roulette` pattern along the borders of the matrix.
 - **`led_spiral`**: This branch contains code that lights the LEDs in a `spiral` fashion, starting from the outer border and moving towards the inner LEDs.
+- **`uart`**: This branch contains code that makes microcontroller and pc to communicate using uart protocol. Below are the available binary:
+  - `uart-send`: Sends data from `micro-controller` to `pc`.
+  - `uart-receive`: Receives data from `pc` to `micro-controller` and prints to rtt console.
+  - `echo-server`: Two way communication, `micro-controller` acts as echo server, when data is send from pc via serial port, data is printed in rtt console, and echoed back to the `pc`.
+Run the above binary using the below command:
+```bash
+   # update the `bin-name` before running
+   cargo embed --bin <bin-name> --target thumbv7em-none-eabihf 
+```
 
 ## Getting Started
 To get started with this project, ensure you have the following:
